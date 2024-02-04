@@ -1,0 +1,18 @@
+type Query {
+    getById(id: String): Comment
+    getAllByPostId(postId: ID): [Comment]
+    getAllByUserId(userId: ID): [Comment]
+}
+
+type Mutation {
+    create(postId: Int, userId: Int, content: String, createdAt: String): Comment
+    deleteById(id: ID): String
+}
+
+type Comment {
+    id: String
+    postId: Int
+    userId: Int
+    content: String
+    createdAt: String # example - 2024-02-04T12:31:25
+}
