@@ -6,7 +6,8 @@ spring:
     name: comment-service
   data:
     mongodb:
-      uri: mongodb://localhost:27017/comment-service-blog-platform
+#      uri: mongodb://localhost:27017/comment-service-blog-platform
+      uri: mongodb://mongo:27017/comment-service-blog-platform # for docker
   graphql:
     graphiql:
       enabled: true
