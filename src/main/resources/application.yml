@@ -11,3 +11,11 @@ spring:
   graphql:
     graphiql:
       enabled: true
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+  client:
+    service-url:
+#      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://eureka-server:8761/eureka # for docker
