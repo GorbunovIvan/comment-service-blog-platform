@@ -1,21 +1,6 @@
-server:
-  port: 8082
-
 spring:
   application:
     name: comment-service
-  data:
-    mongodb:
-#      uri: mongodb://localhost:27017/comment-service-blog-platform
-      uri: mongodb://mongo:27017/comment-service-blog-platform # for docker
-  graphql:
-    graphiql:
-      enabled: true
-
-eureka:
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
-  client:
-    service-url:
-#      defaultZone: http://localhost:8761/eureka
-      defaultZone: http://eureka-server:8761/eureka # for docker
+  config:
+#    import: configserver:http://localhost:8888
+    import: configserver:http://config-server:8888 # for docker
