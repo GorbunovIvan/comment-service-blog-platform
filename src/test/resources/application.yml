@@ -1,6 +1,3 @@
 spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: testdb-comment-service-blog-platform
+  config:
+    import: "optional:configserver:"

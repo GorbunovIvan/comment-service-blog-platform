@@ -1,5 +1,6 @@
 package org.example.commentservice.repository;
 
+import org.example.commentservice.BaseIntegrationTest;
 import org.example.commentservice.model.Comment;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataMongoTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class CommentRepositoryTest {
+class CommentRepositoryTest extends BaseIntegrationTest {
 
     @Autowired
     private CommentRepository commentRepository;
