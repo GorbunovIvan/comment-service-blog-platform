@@ -1,0 +1,84 @@
+# Mongo Deployment
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: blog-platform-mongo-deployment
+  labels:
+    app: blog-platform-mongo
+spec:
+  replicas: 1 #2
+  selector:
+    matchLabels:
+      project: blog-platform-mongo
+  template:
+    metadata:
+      labels:
+        project: blog-platform-mongo
+    spec:
+      containers:
+        - name : mongo
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+
+---
+# Mongo Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  labels:
+     env  : dev
+     owner: IvanGorbunov
+spec:
+  selector:
+    project: blog-platform-mongo
+  ports:
+    - name      : mongo-listener
+      protocol  : TCP
+      port      : 27017
+      targetPort: 27017
+  #type: CLusterIP
+
+---
+# Comment-service Deployment
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: blog-platform-comments-deployment
+  labels:
+    app: blog-platform-comments
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: blog-platform-comments
+  template:
+    metadata:
+      labels:
+        project: blog-platform-comments
+    spec:
+      containers:
+        - name: comment-service
+          image: ivangorbunovv/blog-platform-spring-cloud:comment-service-blog-platform-image
+          ports:
+            - containerPort: 8082
+
+---
+# Comment-service Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: comment-service
+  labels:
+     env  : dev
+     owner: IvanGorbunov
+spec:
+  selector:
+    project: blog-platform-comments
+  ports:
+    - name      : comment-service-listener
+      protocol  : TCP
+      port      : 8082
+      targetPort: 8082
+  #type: CLusterIP

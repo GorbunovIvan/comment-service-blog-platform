@@ -9,4 +9,4 @@ EXPOSE 8082
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
 # Run:
-#   'docker build -t comment-service-blog-platform-image .'
+#   'docker build -t ivangorbunovv/comment-service-blog-platform-image .'
